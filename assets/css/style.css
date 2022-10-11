@@ -1,5 +1,18 @@
 h1 {
-    background-color: #1533A8;
-    color: white;
+    background-color: rgb(79, 91, 197);
     text-align: center;
+}
+
+header {
+    color: white;
+}
+
+.row-cols-5 {
+    margin-top: 250px;
+    margin-left: 200px;
+}
+
+.border-primary {
+    background-color: rgb(29, 29, 74);
+    color: white;
 }
