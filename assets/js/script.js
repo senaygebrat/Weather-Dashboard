@@ -27,31 +27,95 @@ var search = document.getElementById("submit-search")
 //     })
 // }
 
+
+forecastEl = document.getElementById("forecast")
+forecastEl.style.display = "none"
+
 function currentDay(city){
     var currentDayURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial";
+    console.log(currentDayURL)
     fetch(currentDayURL)
     .then(function(res){
         return res.json();
     })
+
     .then(function(data){
+        var today = moment().format('MMMM Do YYYY')
+        var todayEl = document.createElement("p")
+        var cityCap = city.toUpperCase()
+        todayEl.textContent = `${cityCap}(${today})`
+        document.getElementById("date").append(todayEl)
+    
+
+
         console.log(JSON.stringify(data));
         document.getElementById("current-city").textContent = "";
         var tempP = document.createElement("p");
         tempP.textContent = "Temp: " + data.main.temp;
         document.getElementById("current-city").append(tempP)
+        console.log(tempP);
         getForecast(data.coord.lat, data.coord.lon);
-    }
-    );
+
+        // document.getElementById("icon").textContent = "";
+        // var icon = document.createElement("p");
+        // icon.textContent = data.weather[3].value;
+        // document.getElementById("icon").append(icon)
+        // getForecast(data.coord.lat, data.coord.lon);
+        // console.log(icon);
+
+        document.getElementById("current-city1").textContent = "";
+        var humidity = document.createElement("p");
+        humidity.textContent = "Humidity: " + data.main.humidity;
+        document.getElementById("current-city1").append(humidity)
+        getForecast(data.coord.lat, data.coord.lon);
+        console.log(humidity);
+
+        document.getElementById("current-city2").textContent = "";
+        var wind = document.createElement("p");
+        wind.textContent = "Wind: " + data.wind.speed;
+        document.getElementById("current-city2").append(wind)
+        getForecast(data.coord.lat, data.coord.lon);
+        console.log(wind);
 
 
-//api call for current day, fetch (line 12)
-//pass the data 
+         var day1 = moment().add(1,"day").format("MMM Do YY");
+    var day2 = moment().add(2,"day").format("MMM Do YY");
+    var day3 = moment().add(3,"day").format("MMM Do YY");
+    var day4 = moment().add(4,"day").format("MMM Do YY");
+    var day5 = moment().add(5,"day").format("MMM Do YY");
 
-}
+    forecastEl.style.display = "block"
 
+    console.log(day1)
+
+    var element1 = document.getElementById("date-day-1")
+    element1.textContent = day1
+
+    var element2 = document.getElementById("date-day-2")
+    element2.textContent = day2
+
+    var element3 = document.getElementById("date-day-3")
+    element3.textContent = day3
+
+    var element4 = document.getElementById("date-day-4")
+    element4.textContent = day4
+
+    var element5 = document.getElementById("date-day-5")
+    element5.textContent = day5
+
+
+
+
+    // document.getElementById("card-title").textContent = ""
+    // var dayOneEl = 
+    
+
+    })
+  }
+// currentDay();
 function getForecast(lat, lon){
-    var forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat="${lat}&lon=${lon}&appid=${apiKey}&units=imperial`; //need to change to line 31
-
+    var forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`; //need to change to line 31
+    console.log(forecastURL);
     fetch(forecastURL)
     .then(function(response){
         return response.json();
