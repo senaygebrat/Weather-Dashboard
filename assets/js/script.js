@@ -63,26 +63,26 @@ function currentDay(city){
         // getForecast(data.coord.lat, data.coord.lon);
         // console.log(icon);
 
-        document.getElementById("current-city1").textContent = "";
+        document.getElementById("humidity").textContent = "";
         var humidity = document.createElement("p");
         humidity.textContent = "Humidity: " + data.main.humidity;
-        document.getElementById("current-city1").append(humidity)
+        document.getElementById("humidity").append(humidity)
         getForecast(data.coord.lat, data.coord.lon);
         console.log(humidity);
 
-        document.getElementById("current-city2").textContent = "";
+        document.getElementById("wind").textContent = "";
         var wind = document.createElement("p");
         wind.textContent = "Wind: " + data.wind.speed;
-        document.getElementById("current-city2").append(wind)
+        document.getElementById("wind").append(wind)
         getForecast(data.coord.lat, data.coord.lon);
         console.log(wind);
 
 
-         var day1 = moment().add(1,"day").format("MMM Do YY");
-    var day2 = moment().add(2,"day").format("MMM Do YY");
-    var day3 = moment().add(3,"day").format("MMM Do YY");
-    var day4 = moment().add(4,"day").format("MMM Do YY");
-    var day5 = moment().add(5,"day").format("MMM Do YY");
+         var day1 = moment().add(1,"day").format("MMMM Do, YYYY");
+    var day2 = moment().add(2,"day").format("MMMM Do, YYYY");
+    var day3 = moment().add(3,"day").format("MMMM Do, YYYY");
+    var day4 = moment().add(4,"day").format("MMMM Do, YYYY");
+    var day5 = moment().add(5,"day").format("MMMM Do, YYYY");
 
     forecastEl.style.display = "block"
 
