@@ -9,23 +9,23 @@ var search = document.getElementById("submit-search")
 // https://api.openweathermap.org/data/2.5/weather?
 
 
-function getApi(){
-var sjc = 'https://api.openweathermap.org/data/2.5/forecast?lat=37.338207&lon=-121.886330&appid=fba17daf9cbeec5b417e3dbe0642cbd1';
+// function getApi(){
+// var sjc = 'https://api.openweathermap.org/data/2.5/forecast?lat=37.338207&lon=-121.886330&appid=fba17daf9cbeec5b417e3dbe0642cbd1';
 
-  fetch(sjc)
-    .then(function(response){
-        return response.json();
-    })
-    .then(function (data){
-        console.log(data);  
-        //when i console log here, i can see several next few days,
-        //3 hour increments
-        for (var i = 0; i <data.length; i++){
-            var cityName = document.createElement('h3');
-            var date = document.createElement('p');
-        }
-    })
-}
+//   fetch(sjc)
+//     .then(function(response){
+//         return response.json();
+//     })
+//     .then(function (data){
+//         console.log(data);  
+//         //when i console log here, i can see several next few days,
+//         //3 hour increments
+//         for (var i = 0; i <data.length; i++){
+//             var cityName = document.createElement('h3');
+//             var date = document.createElement('p');
+//         }
+//     })
+// }
 
 function currentDay(city){
     var currentDayURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=imperial";
@@ -40,7 +40,8 @@ function currentDay(city){
         tempP.textContent = "Temp: " + data.main.temp;
         document.getElementById("current-city").append(tempP)
         getForecast(data.coord.lat, data.coord.lon);
-    });
+    }
+    );
 
 
 //api call for current day, fetch (line 12)
@@ -52,8 +53,8 @@ function getForecast(lat, lon){
     var forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat="${lat}&lon=${lon}&appid=${apiKey}&units=imperial`; //need to change to line 31
 
     fetch(forecastURL)
-    .then(function(res){
-        return res.json();
+    .then(function(response){
+        return response.json();
     })
     .then(function(data){
         console.log(JSON.stringify(data));
@@ -70,7 +71,6 @@ function displayCurrentDay(data){
     //append those elements with data to div
 
 }
-getApi();
 
 function saveCities(searchCity)
 {
