@@ -3,6 +3,7 @@ h1 {
     text-align: center;
 }
 
+/* changes color of header font to white */
 header {
     color: white;
 }
@@ -17,17 +18,9 @@ header {
     color: white;
 }
 
+/* changes color of background and font color for the forecast cards */
 .card-body{
     background-color: rgb(43, 43, 91);
     color: white;
-
 }
 
-
-/* need to figure out how to put in row */
-/* .shape {  
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    grid-auto-rows: 100px;
-} */
