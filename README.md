@@ -1,4 +1,26 @@
 # Weather-Dashboard
+![Site Image]
+
+[Updated Site]
+
+## About Weather-Dashboard
+Weather Dashboard is a tool that allows the user to input a city name to see the current temperature, humidity, and wind speeds, as well as for the 5 day forecast of selected city.
+
+## Code Snippet
+Below is a previw of some of the JavaScript code to make the page functional.
+
+
+
+
+
+
+
+## Author Links
+[LinkedIn](https://www.linkedin.com/in/senay-gebrat-566b78250/)
+[Github](https://github.com/senaygebrat)
+
+
+
 <!-- 
 1. Gather the value of the user's input when they click the "search" button
 2. Using this value, you will pass it into the api call

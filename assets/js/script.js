@@ -4,29 +4,6 @@ var searchHistory = document.getElementById("search-history");
 var forecast = document.getElementById("forecast");
 var cityInput = document.getElementById("city");
 var search = document.getElementById("submit-search")
-//create elements for all displayed data
-// https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={API key}
-// https://api.openweathermap.org/data/2.5/weather?
-
-
-// function getApi(){
-// var sjc = 'https://api.openweathermap.org/data/2.5/forecast?lat=37.338207&lon=-121.886330&appid=fba17daf9cbeec5b417e3dbe0642cbd1';
-
-//   fetch(sjc)
-//     .then(function(response){
-//         return response.json();
-//     })
-//     .then(function (data){
-//         console.log(data);  
-//         //when i console log here, i can see several next few days,
-//         //3 hour increments
-//         for (var i = 0; i <data.length; i++){
-//             var cityName = document.createElement('h3');
-//             var date = document.createElement('p');
-//         }
-//     })
-// }
-
 
 forecastEl = document.getElementById("forecast")
 forecastEl.style.display = "none"
@@ -49,7 +26,7 @@ function currentDay(city){
 
         document.getElementById("current-city").textContent = "";
         var tempP = document.createElement("p");
-        tempP.textContent = "Temp: " + data.main.temp + " degrees °F";
+        tempP.textContent = "Temp: " + data.main.temp + " °F";
         document.getElementById("current-city").append(tempP)
         console.log(tempP);
         // getForecast(data.coord.lat, data.coord.lon);
@@ -64,7 +41,7 @@ function currentDay(city){
 
         document.getElementById("humidity").textContent = "";
         var humidity = document.createElement("p");
-        humidity.textContent = "Humidity: " + data.main.humidity + " %";
+        humidity.textContent = "Humidity: " + data.main.humidity + "%";
         document.getElementById("humidity").append(humidity)
         // getForecast(data.coord.lat, data.coord.lon);
         console.log(humidity);
@@ -75,12 +52,6 @@ function currentDay(city){
         document.getElementById("wind").append(wind)
         // getForecast(data.coord.lat, data.coord.lon);
         console.log(wind);
-
-        // forecastEl.style.display = "block"
-
-
- 
-
 
     var day1 = moment().add(1,"day").format("MMMM Do, YYYY");
     var day2 = moment().add(2,"day").format("MMMM Do, YYYY");
@@ -120,7 +91,7 @@ function getForecast(city){
             return response.json()
             .then(function(data){
                 console.log(data)
-                // displayForecast(data)
+                displayForecast(data)
             })
         }
         else {
@@ -140,52 +111,80 @@ function displayForecast(data){
 
     console.log(day1)
 
+    // var iconPic = data.weather[0].icon
+    // document.getElementById("icon").textContent = "";
+    // var icon = document.createElement("img");
+    // icon.setAttribute("src", "http://openweathermap.org/img/wn/" + iconPic + "@2x.png") 
+    // document.getElementById("icon").append(icon)
+    // // getForecast(data.coord.lat, data.coord.lon);
+    // console.log(icon);
+
+
+
+
+
     var element1 = document.getElementById("date-day-1")
     element1.textContent = day1
-    var icon1 = document.getElementsById("icon1")
-    var iconPic1 = //whatever data input from console (data.list[3].weather.icon)
-    icon1.setAttribute("src", "http://openweathermap.org/img/wn/" + iconPic1 + "@2x.png") 
 
-    var temp1 =document.getElementsById("temp1")
-    temp1.textContent = "Temp: " + data.list[3].main.temp;
-    var hum1 =document.getElementsById("hum1")
-    hum1.textContent = "Humidity " + data.list[3].main.humidity;
-    var wind1 = document.getElementsById("wind1")
-    wind1.textContent = "Wind" + data.list[3].wind.speed;
+
+    var iconPic1 = data.list[3].weather[0].icon
+    document.getElementById("icon1").textContent = "";
+    var icon1 = document.createElement("img");
+    icon1.setAttribute("src", "http://openweathermap.org/img/wn/" + iconPic1 + "@2x.png") 
+    document.getElementById("icon1").append(icon1)
+    var temp1 =document.getElementById("temp1")
+    temp1.textContent = "Temp: " + data.list[3].main.temp + " °F";
+    var hum1 =document.getElementById("hum1")
+    hum1.textContent = "Humidity: " + data.list[3].main.humidity + "%";
+    var wind1 = document.getElementById("wind1")
+    wind1.textContent = "Wind: " + data.list[3].wind.speed + " MPH";
 
     //add icon2
-    var element2 = document.getElementById("date-day-2")
-    element2.textContent = day2
-
-    var temp2 =document.getElementsById("temp2")
-    temp2.textContent = "Temp: " + data.list[3].main.temp;
-    var hum2 =document.getElementsById("hum2")
-    hum2.textContent = "Humidity " + data.list[3].main.humidity;
-    var wind2 = document.getElementsById("wind2")
-    wind2.textContent = "Wind" + data.list[3].wind.speed;
+    var iconPic2 = data.list[11].weather[0].icon
+    document.getElementById("icon2").textContent = "";
+    var icon2 = document.createElement("img");
+    icon2.setAttribute("src", "http://openweathermap.org/img/wn/" + iconPic2 + "@2x.png") 
+    document.getElementById("icon2").append(icon2)
+    var temp2 =document.getElementById("temp2")
+    temp2.textContent = "Temp: " + data.list[11].main.temp + " °F";
+    var hum2 =document.getElementById("hum2")
+    hum2.textContent = "Humidity: " + data.list[11].main.humidity + "%";
+    var wind2 = document.getElementById("wind2")
+    wind2.textContent = "Wind: " + data.list[11].wind.speed + " MPH";
 
     var element3 = document.getElementById("date-day-3")
     element3.textContent = day3
 
 
     //add icon3
-    var temp3 =document.getElementsById("temp3")
-    temp3.textContent = "Temp: " + data.list[3].main.temp;
-    var hum3 =document.getElementsById("hum3")
-    hum1.textContent = "Humidity " + data.list[3].main.humidity;
-    var wind3 = document.getElementsById("wind3")
-    wind1.textContent = "Wind" + data.list[3].wind.speed;
+
+    var iconPic3 = data.list[19].weather[0].icon
+    document.getElementById("icon3").textContent = "";
+    var icon3 = document.createElement("img");
+    icon3.setAttribute("src", "http://openweathermap.org/img/wn/" + iconPic3 + "@2x.png") 
+    document.getElementById("icon3").append(icon3)
+    var temp3 =document.getElementById("temp3")
+    temp3.textContent = "Temp: " + data.list[19].main.temp + " °F";
+    var hum3 =document.getElementById("hum3")
+    hum3.textContent = "Humidity: " + data.list[19].main.humidity + "%";
+    var wind3 = document.getElementById("wind3")
+    wind3.textContent = "Wind: " + data.list[19].wind.speed + " MPH";
 
     var element4 = document.getElementById("date-day-4")
     element4.textContent = day4
 
     //add icon4
-    var temp4 =document.getElementsById("temp4")
-    temp4.textContent = "Temp: " + data.list[3].main.temp;
-    var hum4 =document.getElementsById("hum4")
-    hum1.textContent = "Humidity " + data.list[3].main.humidity;
-    var wind4 = document.getElementsById("wind4")
-    wind1.textContent = "Wind" + data.list[3].wind.speed;
+    var iconPic4 = data.list[27].weather[0].icon
+    document.getElementById("icon4").textContent = "";
+    var icon4 = document.createElement("img");
+    icon4.setAttribute("src", "http://openweathermap.org/img/wn/" + iconPic4 + "@2x.png") 
+    document.getElementById("icon4").append(icon4)
+    var temp4 =document.getElementById("temp4")
+    temp4.textContent = "Temp: " + data.list[27].main.temp + " °F";
+    var hum4 =document.getElementById("hum4")
+    hum4.textContent = "Humidity: " + data.list[27].main.humidity + "%";
+    var wind4 = document.getElementById("wind4")
+    wind4.textContent = "Wind: " + data.list[27].wind.speed + " MPH";
 
 
 
@@ -193,15 +192,20 @@ function displayForecast(data){
     var element5 = document.getElementById("date-day-5")
     element5.textContent = day5
 
-    //add icon5
-    var temp5 =document.getElementsById("temp5")
-    temp5.textContent = "Temp: " + data.list[3].main.temp;
-    var hum5 =document.getElementsById("hum5")
-    hum1.textContent = "Humidity " + data.list[3].main.humidity;
-    var wind5 = document.getElementsById("wind5")
-    wind1.textContent = "Wind" + data.list[3].wind.speed;
+
+    var iconPic5 = data.list[35].weather[0].icon
+    document.getElementById("icon5").textContent = "";
+    var icon5 = document.createElement("img");
+    icon5.setAttribute("src", "http://openweathermap.org/img/wn/" + iconPic5 + "@2x.png") 
+    var temp5 =document.getElementById("temp5")
+    temp5.textContent = "Temp: " + data.list[35].main.temp + " °F";
+    var hum5 =document.getElementById("hum5")
+    hum5.textContent = "Humidity: " + data.list[35].main.humidity + "%";
+    var wind5 = document.getElementById("wind5")
+    wind5.textContent = "Wind: " + data.list[35].wind.speed + " MPH";
 
 }
+
 
 function saveCities(searchCity)
 {
@@ -228,24 +232,9 @@ search.addEventListener("click", function(event){
     //FUNCTIONALITY
 
 // once Search is clicked ...
-// condition statement in case searchCity is blank (what do i want it to do) -- refgresh / display "Invalid search"
+// condition statement in case searchCity is blank (what do i want it to do) -- refresh / display "Invalid search"
 
 
 // ELSE -- USING searchCity var 
-// API GET request for today 
-        // Mock up Example: Where it shows Atlanta/day/temp/humid/winds 
-        // display city, cityurl.temp   .humid   .wind
-        // add info to html element based on id
-
-//API GET request for 5 day forecast (day1,2,3,4,5,)
-        // Mock up Example: 5 day Forecast:
-        // use day var to make api call and display based on date 
-        // add info to html element based on id
-
-
 
 })
-
-
-
-//city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed

@@ -17,6 +17,12 @@ header {
     color: white;
 }
 
+.card-body{
+    background-color: rgb(43, 43, 91);
+    color: white;
+
+}
+
 
 /* need to figure out how to put in row */
 /* .shape {  
